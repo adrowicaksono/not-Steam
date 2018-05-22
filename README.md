@@ -1,0 +1,2 @@
+# not-Steam
+game-shop
