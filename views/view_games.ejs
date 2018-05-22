@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LIST GAMES</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Total_purchase</th>
+                <th>action</th>
+                <th>option</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% _games.forEach(function(game, idx){ %>
+                <tr>
+                    <td><%- idx + 1  %></td>
+                    <td><%- game.title %></td>
+                    <td><%- game.genre %></td>
+                    <td><%- game.price %></td>
+                    <td><%- game.Total_purchase %></td>
+                    <td><a href="/games/add">add</a></td>
+                    <td><a href= <%- '/games/edit/'+ game.id %> >  edit</a>||<a href=<%- '/games/delete/'+ game.id %> > delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+   
+    
+</body>
+</html>
