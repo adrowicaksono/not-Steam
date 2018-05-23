@@ -18,7 +18,7 @@
 
     <div class='container'>
         <h1 style="margin: 40px;text-align: center">Register</h1>   
-       	 	<% if (typeof msg) { %>
+       	 	<% if (typeof msg !== 'undefined') { %>
           	  <div class="alert alert-warning" role="alert" id='alert'>
                 Email Already In Use
            	  </div>

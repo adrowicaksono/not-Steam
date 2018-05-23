@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 //setup ejs
 app.set('view engine', 'ejs');
-app.set('views', './views')
+// app.set('views', './views')
 
 app.use('/games', indexGames)
 // app.use('/users', indexUser)
