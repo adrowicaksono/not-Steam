@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <style>
+        #alert {
+            width: 400px;
+            margin: 30px auto;
+            text-align: center
+        }
+    </style>
+
+    <div class='container'>
+        <h1 style="margin: 40px;text-align: center">Register</h1>   
+       	 	<% if (typeof msg) { %>
+          	  <div class="alert alert-warning" role="alert" id='alert'>
+                Email Already In Use
+           	  </div>
+        	<% } %>         
+        <form action="/auth/register" method="POST" style="width: 300px;margin:auto">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Username</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username"
+                    name="username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Age</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Age" name="age">
+            </div>
+
+            <input type="submit" class="btn btn-primary" value="Register"></input>
+          
+        </form>
+    </div>
+
+</body>
+
+</html>

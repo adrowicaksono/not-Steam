@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended:false}); 
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+
+
 router.get('/', function(req, res){
     Games
     .findAll({order: [['id', 'ASC']]})
