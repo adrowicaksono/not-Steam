@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -8,7 +9,25 @@
 </head>
 <body>
     <h1>LIST GAMES</h1>
-    <table>
+    <form action="/games/filter" method="POST" class="form-group">
+        <select name="genre" id="">
+            
+            <% genre.forEach(function(gen){ %>
+                <option value= <%- gen.genre %>  > <%- gen.genre %> </option>
+            <% }) %>
+
+
+            <option value="bla2">bla2</option>
+            <option value="bla2">bla2</option>
+        </select>
+        <input type="submit" value="filter">
+        
+        <form action="/games">
+            <input type="submit" value="all">
+        </form>
+        
+    </form>
+    <table class="table">
         <thead>
             <tr>
                 <th>No</th>
@@ -21,13 +40,13 @@
             </tr>
         </thead>
         <tbody>
-            <% _games.forEach(function(game, idx){ %>
+            <% games.forEach(function(game, idx){ %>
                 <tr>
                     <td><%- idx + 1  %></td>
                     <td><%- game.title %></td>
                     <td><%- game.genre %></td>
-                    <td><%- game.price %></td>
-                    <td><%- game.Total_purchase %></td>
+                    <td><%- toRupiah(game.price) %></td>
+                    <td><%- game.total_purchase %></td>
                     <td><a href="/games/add">add</a></td>
                     <td><a href= <%- '/games/edit/'+ game.id %> >  edit</a>
                             ||
