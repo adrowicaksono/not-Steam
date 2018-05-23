@@ -1,57 +1,69 @@
 const express = require('express');
 const router = express.Router();
+
 const model = require('../models');
 let Games = model.Game;
+let Users = model.User;
+
 const bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({extended:false}); 
+
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
+
 router.get('/', function(req, res){
-    Games
+    Users
     .findAll({order: [['id', 'ASC']]})
-    .then(function(games){
-        res.render('view_games', {
-            _games : games, 
+    .then(function(users){
+        res.render('view_users', {
+            _users : users, 
         })
     })
 })
-
+//sampe sini
 router.get('/add', function(req, res){
-    res.render('add_games');
+    res.render('add_users');
 })
 
 router.post('/add', urlencodedParser, function(req, res){
-    Games
+    Users
     .create({
-        title : req.body.title,
-        genre : req.body.genre,
-        price : req.body.price, 
+        username : req.body.username,
+        age : req.body.age,
+        email : req.body.email,
+        password : req.body.password,
+        salt : req.body.salt,
+        role :  req.body.role,
     })
     .then(function(){
-        res.redirect('/games')
+        res.redirect('/users')
     })
     .catch(function(err){
+        //tambahkan pesan error
         res.send('data tidak lengkap')
     })
    
 })
 
 router.get('/edit/:id', urlencodedParser, function(req,res){
-    Games
+    Users
     .findById(req.params.id)
-    .then(function(games){
-        res.render('edit_games',{
-            _games : games,
+    .then(function(user){
+        res.render('edit_users',{
+            _user : user,
         });
     })
 })
 
 router.post('/edit/:id', urlencodedParser, function(req, res){
-    Games
+    Users
     .update({
-        title : req.body.title,
-        genre : req.body.genre,
-        price : req.body.price,
+        username : req.body.username,
+        age : req.body.age,
+        email : req.body.email,
+        password : req.body.password,
+        salt : req.body.salt,
+        role : req.body.role,
         updatedAt: new Date(),
       }, {
         where : {
@@ -61,7 +73,7 @@ router.post('/edit/:id', urlencodedParser, function(req, res){
         }
       })
       .then(function(){
-          res.redirect('/games')
+          res.redirect('/users')
       })
       .catch(function(err){
           res.send(err)
@@ -69,11 +81,10 @@ router.post('/edit/:id', urlencodedParser, function(req, res){
 })
 
 router.get('/delete/:id', urlencodedParser, function(req, res){
-   
-    Games
+    Users
     .destroy({where:{id:req.params.id}})
     .then(function(){
-        res.redirect('/games')
+        res.redirect('/users')
     })
 })
 

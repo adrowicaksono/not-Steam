@@ -7,31 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>LIST GAMES</h1>
+    <h1>LIST USERS</h1>
     <table>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Price</th>
-                <th>Total_purchase</th>
+                <th>Username</th>
+                <th>Age</th>
+                <th>Email</th>
                 <th>action</th>
                 <th>option</th>
             </tr>
         </thead>
         <tbody>
-            <% _games.forEach(function(game, idx){ %>
+            <% _users.forEach(function(user, idx){ %>
                 <tr>
                     <td><%- idx + 1  %></td>
-                    <td><%- game.title %></td>
-                    <td><%- game.genre %></td>
-                    <td><%- game.price %></td>
-                    <td><%- game.Total_purchase %></td>
-                    <td><a href="/games/add">add</a></td>
-                    <td><a href= <%- '/games/edit/'+ game.id %> >  edit</a>
+                    <td><%- user.username %></td>
+                    <td><%- user.age %></td>
+                    <td><%- user.email %></td>
+                    <td><a href="/users/add">add</a></td>
+                    <td><a href= <%- '/users/edit/'+ user.id %> >  edit</a>
                             ||
-                        <a href=<%- '/games/delete/'+ game.id %> > delete</a>
+                        <a href=<%- '/users/delete/'+ user.id %> > delete</a>
                     </td>
                 </tr>
             <% }) %>
