@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     username: DataTypes.STRING,
@@ -9,8 +10,15 @@ module.exports = (sequelize, DataTypes) => {
         isEmail: true,
          isUnique: function(email,next) {
           User.findOne({where:{email:email}})
-          .then((notAvailable)=>{
-            if(notAvailable == undefined){
+          .then((user)=>{
+            console.log('------------->', user)
+            if(user){
+
+            // console.log('------------->1' )
+             next('Email already Used')
+            }
+            else{
+              // console.log('------------->2' )
               next()
             }
           })
@@ -26,6 +34,13 @@ module.exports = (sequelize, DataTypes) => {
         if (!user.role) {
           user.role = 'user'
         }
+      },
+      beforeCreate: function(user,option){
+        const bcrypt = require('bcrypt')
+        const garem = bcrypt.genSaltSync(8)
+        const hash = bcrypt.hashSync(user.password,garem)
+        user.salt = garem
+        user.password = hash
       }
     }
   });

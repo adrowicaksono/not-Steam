@@ -4,35 +4,81 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const model = require('../models')
 const User = model.User
-// const crypto = require('crypto')
-// const bodyParser = require('body-parser');
-// var urlencodedParser = bodyParser.urlencoded({extended:false})
+// const crypto = requireer.urlencoded({extended:false})
 let bcrypt = require('bcrypt')
 
-router.get('/',function(req,res){
-	res.send('auth')
+router.get('/',function(req,res,next){
+	if (req.session.current_user) {
+		res.send('sudah login')
+	}
+	else{
+		next()
+	}
+},(req,res,next)=>{
+	res.render('login',{msg:''})
 })
+
+router.post('/',(req,res,next)=>{
+	var salt = bcrypt.genSaltSync(8);
+	var hash = bcrypt.hashSync(req.body.password,salt)
+	let password = bcrypt.compareSync(req.body.password,hash)
+    User.findOne({
+    	where: {
+    		username: req.body.username
+    	}
+    })
+    .then(user=>{
+    	if (user && password) {
+    		if (user.role==='admin') {
+	    		req.session.current_user = user
+	    		next()
+	    		res.redirect('/games')
+    		}
+    		else{
+    			req.session.current_user = user
+    			next()
+    			res.send('User login')
+    		}
+    		// req.session.current_user = user
+    		
+    	}
+    	else{
+    		console.log('----------ctrl2')
+    		console.log('password salah')
+    	}
+    }).catch(err=>{
+    	console.log(err)
+    })
+})
+
+
+
+
 router.get('/register',function(req,res){
 	res.render('register')
 })
 router.post('/register',function(req,res){
-	// console.log(req.body)
-	let salt = bcrypt.genSaltSync(8)
-	let hash = bcrypt.hashSync(req.body.password,salt) 
-	
 	User.create({
 		username: req.body.username,
 		age: req.body.age,
 		email: req.body.email,
-		password: hash,
-		salt: salt
+		password: req.body.password,
 	})
 	.then(()=>{
-		res.redirect('/auth/login')
+		// console.log('------------->ctrl1' )
+		res.redirect('/auth')
 	})
 	.catch(err=>{
-		res.render('register',{msg:'used'})
+		console.log('------------->ctrl2', err )
+		res.render('register',{err})
 	})
 })
+
+router.post('/logout', (req, res, next) => {
+    req.session.current_user = null
+    res.redirect('/auth')
+})
+
+
 
 module.exports = router
