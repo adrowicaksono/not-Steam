@@ -77,9 +77,9 @@ router.post('/register',function(req,res){
 		// console.log('------------->ctrl1' )
 		res.redirect('/auth')
 	})
-	.catch(err=>{
-		console.log('------------->ctrl2', err )
-		res.render('register',{err})
+	.catch(errors=> {
+		console.log('------------->ctrl2', errors )
+		res.render('register', {errors})
 	})
 })
 

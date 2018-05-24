@@ -8,6 +8,7 @@ let routesAuthentication = require('./routes/routes_authentication.js')
 let steam = require('./routes/notSteam.js')
 
 app.locals.formatUang = require('./helpers/formatCurrency')
+app.locals.yetPurchase = require('./helpers/yetPurchase')
 
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(express.static('views/home'))
