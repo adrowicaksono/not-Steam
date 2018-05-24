@@ -76,7 +76,7 @@ router.post('/', function(req,res){
 router.post('/buy/:gamesId/', function(req, res){
     let User_Id = req.session.current_user.id
     let games_Id = req.params.gamesId;
-    console.log(User_Id,'user id',games_Id,'games_Id')
+    // console.log(User_Id,'user id',games_Id,'games_Id')
     Transaction
     .create({
         UserId : User_Id,

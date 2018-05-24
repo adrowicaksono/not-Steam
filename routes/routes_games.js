@@ -12,12 +12,38 @@ router.get('/', function(req, res){
     Games
     .findAll({order: [['id', 'ASC']]})
     .then(function(games){
-        res.render('view_games', {
-            _games : games, 
+        Games
+        .getByGenre()
+        .then(function(genre){
+            res.render('view_games', {
+                games,
+                genre, 
+            })
+            
         })
     })
 })
 
+router.post('/filter', urlencodedParser, function(req,res){
+    var filter = req.body.genre;
+    Games
+    .findAll({
+        where:{
+            genre : filter
+        }
+    })
+    .then(function(games){
+        Games
+        .getByGenre()
+        .then(function(genre){
+            res.render('view_games',{
+                games,
+                genre,
+            })
+        })
+       
+    })
+})
 router.get('/add', function(req, res){
     res.render('add_games');
 })
