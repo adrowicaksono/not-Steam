@@ -19,13 +19,7 @@ router.get('/',(req,res)=>{
 		})
 	})
 })
-// User.findAll({
-//   where: { user_id: '123' },
-//   include: {
-//     model: Bars,
-//     through: { attributes: [] } // this will remove the rows from the join table (i.e. 'UserPubCrawl table') in the result set
-//   }
-// });
+
 
 router.get('/profile',function(req,res,next){
 	if (!req.session.current_user) {
@@ -72,6 +66,18 @@ router.post('/', function(req,res){
         })
        
     })
+})
+router.get('/profile/:games_Id',(req,res)=>{
+	Transaction.findAll({
+		include: {
+			model: User,
+		},where : {
+			'GameId' : req.params.games_Id 
+		}
+	})
+	.then(games=>{
+		res.render('view_who_played',{games})
+	})
 })
 router.post('/buy/:gamesId/', function(req, res){
     let User_Id = req.session.current_user.id

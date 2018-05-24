@@ -104,6 +104,10 @@ router.get('/delete/:id', urlencodedParser, function(req, res){
         res.redirect('/games')
     })
 })
+router.post('/logout', (req, res, next) => {
+    req.session.current_user = null
+    res.redirect('/auth')
+})
 
 
 

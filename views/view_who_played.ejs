@@ -145,19 +145,15 @@ h2 a {
 <table class="container">
 	<thead>
 		<tr>
-			<th><h1>Game ID</h1></th>
-			<th><h1>Game Name</h1></th>
-			<th><h1>Genre</h1></th>
-			<th><h1>Action</h1></th>
+			<th><h1>User ID</h1></th>
+			<th><h1>User Name</h1></th>
 		</tr>
 	</thead>
 	<tbody>
 		<% games.forEach(game=> {%>
 		<tr>
-			<td><a href="/steam/profile/<%= game.Game.id %>"><%= game.Game.id %></a></td>
-			<td><%= game.Game.title %></td>
-			<td><%= game.Game.genre %></td>
-			<td><a href="">Play Trailer</a></td>
+			<td><%= game.User.id %></td>
+			<td><%= game.User.username %></td>
 		</tr>
 		<%})%>
 	</tbody>
