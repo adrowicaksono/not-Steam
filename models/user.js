@@ -30,11 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     role: DataTypes.STRING
   }, {
     hooks: {
-      beforeCreate: (user,option)=>{
-        if (!user.role) {
-          user.role = 'user'
-        }
-      },
       beforeCreate: function(user,option){
         const bcrypt = require('bcrypt')
         const garem = bcrypt.genSaltSync(8)
@@ -46,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = function(models) {
     // associations can be defined here
+    User.belongsToMany(models.Game,{through: 'Transaction'})
   };
   return User;
 };

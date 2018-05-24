@@ -21,29 +21,31 @@ router.get('/',function(req,res,next){
 router.post('/',(req,res,next)=>{
 	var salt = bcrypt.genSaltSync(8);
 	var hash = bcrypt.hashSync(req.body.password,salt)
-	let password = bcrypt.compareSync(req.body.password,hash)
+	var passTemp = req.body.password
+	// let password = bcrypt.compareSync(req.body.password,hash)
     User.findOne({
     	where: {
     		username: req.body.username
     	}
     })
     .then(user=>{
-    	if (user && password) {
-    		if (user.role==='admin') {
-	    		req.session.current_user = user
-	    		next()
-	    		res.redirect('/games')
+    	if (user) {
+    		let password = bcrypt.compareSync(passTemp,user.password)
+    		if (password) {
+    			if (user.role==='admin') {
+		    		req.session.current_user = user
+		    		next()
+		    		res.redirect('/games')
+    			}
+    			else{
+	    			req.session.current_user = user
+	    			next()
+	    			res.redirect('/')
+    			}
     		}
-    		else{
-    			req.session.current_user = user
-    			next()
-    			res.send('User login')
-    		}
-    		// req.session.current_user = user
-    		
     	}
     	else{
-    		console.log('----------ctrl2')
+    		res.redirect('/')
     		console.log('password salah')
     	}
     }).catch(err=>{

@@ -5,8 +5,13 @@ const bodyParser = require('body-parser')
 let indexGames = require('./routes/routes_games.js')
 let indexUser = require('./routes/routes_user.js')
 let routesAuthentication = require('./routes/routes_authentication.js')
+let steam = require('./routes/notSteam.js')
+
+app.locals.formatUang = require('./helpers/formatCurrency')
 
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.static('views/home'))
+app.use(express.static('views/steam'))
 
 app.use(session({
     secret:'0912uk!&#s82b!@#',
@@ -14,10 +19,12 @@ app.use(session({
 }))
 //setup ejs
 app.set('view engine', 'ejs');
-// app.set('views', './views')
-// app.get('/',(req,res)=>{
-// 	res.redirect('/auth')
-// })
+
+app.get('/',(req,res)=>{
+	res.render('home/index')
+})
+app.use('/steam',steam)
+
 app.use('/games', indexGames)
 // app.use('/users', indexUser)
 app.use('/auth',routesAuthentication)
