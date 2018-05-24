@@ -5,5 +5,19 @@
     "database": "not_steam_database",
     "host": "127.0.0.1",
     "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "procduction": {
+    "username": "kjocfqrugssryl",
+    "password": "postgres",
+    "database": "dfbqc3dcj1h5kf",
+    "host": "f57d15fdf4217eaaa972f98542f65a46d0c0d558f233c9c8bd321bb62d130389",
+    "dialect": "postgres"
   }
 }

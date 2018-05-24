@@ -1,3 +1,4 @@
+const port = process.env.PORT || 4000;
 const express = require('express');
 const app = express()
 const session = require('express-session');
@@ -30,4 +31,4 @@ app.use('/games', indexGames)
 // app.use('/users', indexUser)
 app.use('/auth',routesAuthentication)
 
-app.listen(3000,console.log('listening on port 3000'))
+app.listen(port,console.log('listening on port 3000'))
