@@ -2,7 +2,26 @@
 
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    username: DataTypes.STRING,
+    username: {
+      type : DataTypes.STRING,
+      validate: {
+        isUnique: function(email,next) {
+          User.findOne({where:{email:email}})
+          .then((user)=>{
+            // console.log('------------->', user)
+            if(user){
+
+            // console.log('------------->1' )
+             next('username already Used')
+            }
+            else{
+              // console.log('------------->2' )
+              next()
+            }
+          })
+        }
+      }
+    } ,
     age: DataTypes.INTEGER,
     email: {
       type: DataTypes.STRING,

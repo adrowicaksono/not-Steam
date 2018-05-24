@@ -56,7 +56,14 @@ router.post('/',(req,res,next)=>{
 
 
 
-router.get('/register',function(req,res){
+router.get('/register',function(req,res,next){
+	if (req.session.current_user) {
+		res.send('sedang login')
+	}
+	else{
+		next()
+	}
+},function(req,res){
 	res.render('register')
 })
 router.post('/register',function(req,res){
