@@ -26,10 +26,22 @@
         <input type="submit" value="all">
     </form>
     <form action="/games/logout" method="POST">
-                 <input type="submit" class="btn btn-primary" value="Logout" name= "logout" onclick="confirm('Are you user want to logout?')">
+                 <input type="submit" class="btn btn-primary" value="Logout" name= "logout")">
              </form>
     <table class="table">
         <thead>
+            <tr>
+                <th><a href="/games/sort?id=asc">ASC</a> <a href="/games/sort?id=desc">DESC</a></th>
+
+                <th><a href="/games/sort?title=asc">ASC</a> <a href="/games/sort?title=desc">DESC</a></th>
+
+                <th><a href="/games/sort?genre=asc">ASC</a> <a href="/games/sort?genre=desc">DESC</a></th>
+
+                <th><a href="/games/sort?price=asc">ASC</a> <a href="/games/sort?price=desc">DESC</a></th>
+
+                <th><a href="/games/sort?total_purchase=asc">ASC</a> <a href="/games/sort?total_purchase=desc">DESC</a></th>
+
+            </tr>
             <tr>
                 <th>No</th>
                 <th>Title</th>

@@ -109,6 +109,170 @@ router.post('/logout', (req, res, next) => {
     res.redirect('/auth')
 })
 
+router.get('/sort',(req,res)=>{
+    if (req.query.id==='asc') {
+        Games.findAll({
+            order: [['id','ASC']]
+        })
+        .then(games=>{
+            Games
+            .getByGenre()
+            .then(function(genre){
+                res.render('view_games', {
+                    games,
+                    genre, 
+                })
+                
+            })
+        })
+    }
+    else if (req.query.id==='desc') {
+            Games.findAll({
+                order: [['id','DESC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+        }
+    else if (req.query.title==='asc') {
+        Games.findAll({
+            order: [['title','ASC']]
+        })
+        .then(games=>{
+            Games
+            .getByGenre()
+            .then(function(genre){
+                res.render('view_games', {
+                    games,
+                    genre, 
+                })
+                
+            }) 
+        })
+    }
+    else if (req.query.title==='desc') {
+            Games.findAll({
+                order: [['title','DESC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+    else if (req.query.genre==='asc') {
+            Games.findAll({
+                order: [['genre','ASC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+    else if (req.query.genre==='desc') {
+            Games.findAll({
+                order: [['genre','DESC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+    else if (req.query.price==='asc') {
+            Games.findAll({
+                order: [['price','ASC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+    else if (req.query.price==='desc') {
+            Games.findAll({
+                order: [['price','DESC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+     else if (req.query.total_purchase==='asc') {
+            Games.findAll({
+                order: [['total_purchase','ASC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+    else if (req.query.total_purchase==='desc') {
+            Games.findAll({
+                order: [['total_purchase','DESC']]
+            })
+            .then(games=>{
+                Games
+                .getByGenre()
+                .then(function(genre){
+                    res.render('view_games', {
+                        games,
+                        genre, 
+                    })
+                    
+                }) 
+            })
+    }
+
+})
+
 
 
 
