@@ -22,7 +22,9 @@ router.get('/', function(req, res){
 })
 //sampe sini
 router.get('/add', function(req, res){
-    res.render('add_users');
+    res.render('add_users',{
+        error : '',
+    });
 })
 
 router.post('/add', urlencodedParser, function(req, res){
@@ -38,9 +40,12 @@ router.post('/add', urlencodedParser, function(req, res){
     .then(function(){
         res.redirect('/users')
     })
-    .catch(function(err){
+    .catch(function({ errors }){
         //tambahkan pesan error
-        res.send('data tidak lengkap')
+        //res.send((err.message).split(', '));
+        res.render('add_users', {
+            errors
+        })
     })
    
 })

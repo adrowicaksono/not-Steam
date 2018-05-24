@@ -16,9 +16,19 @@ module.exports = (sequelize, DataTypes) => {
   });
   Game.associate = function(models) {
     // associations can be defined here
-    //Game.belongsTo(models.Transaction);
+    models.Game.belongsToMany(models.User, {foreignKey :'UserId', through:'Transaction'});
   };
 
+  //class method
+  Game.getByGenre = function(){
+    return Game
+    .findAll({
+      attributes:['genre'],
+      group : 'genre',
+    })  
+  }
   
+   
+
   return Game;
 };

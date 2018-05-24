@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>LIST GAMES</h1>
+    <a href="/games/add">add</a>
     <form action="/games/filter" method="POST" class="form-group">
         <select name="genre" id="">
             
@@ -16,16 +17,13 @@
                 <option value= <%- gen.genre %>  > <%- gen.genre %> </option>
             <% }) %>
 
-
-            <option value="bla2">bla2</option>
-            <option value="bla2">bla2</option>
         </select>
         <input type="submit" value="filter">
         
-        <form action="/games">
-            <input type="submit" value="all">
-        </form>
         
+    </form>
+    <form action="/games">
+        <input type="submit" value="all">
     </form>
     <table class="table">
         <thead>
@@ -46,11 +44,9 @@
                     <td><%- game.title %></td>
                     <td><%- game.genre %></td>
                     <td><%- toRupiah(game.price) %></td>
-                    <td><%- game.total_purchase %></td>
-                    <td><a href="/games/add">add</a></td>
-                    <td><a href= <%- '/games/edit/'+ game.id %> >  edit</a>
-                            ||
-                        <a href=<%- '/games/delete/'+ game.id %> > delete</a>
+                    <td><%- yetPurchase(game.total_purchase) %></td>
+                    <td><a href=<%- '/games/buy/'+ game.id %> >buy</a></td>
+                    <td><a href= <%- '/games/edit/'+ game.id %> >  edit</a>||<a href=<%- '/games/delete/'+ game.id %> > delete</a>
                     </td>
                 </tr>
             <% }) %>

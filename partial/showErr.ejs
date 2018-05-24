@@ -1,0 +1,5 @@
+<% if (typeof errors !== 'undefined') { %>
+    <% errors.forEach(err => { %>
+        <p style="color: red"><%= err.message %></p>
+    <% }) %>
+<% } %>
