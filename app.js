@@ -31,6 +31,4 @@ app.use('/games', indexGames)
 // app.use('/users', indexUser)
 app.use('/auth',routesAuthentication)
 
-app.listen(port,function(){
-    console.log(`Server Starts on ${ports}`)
-})
+app.listen(port,console.log('listening on port 3000')) 
