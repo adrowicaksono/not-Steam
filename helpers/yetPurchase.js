@@ -1,5 +1,5 @@
 function yetPurchase(count){
-    return count == 0 ? 'no purchase yet' : count;
+    return count == null ? 'no purchase yet' : count;
 
 }
 

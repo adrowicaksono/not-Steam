@@ -86,7 +86,7 @@
                   <div class="image"> <a href="#"><img src="css/images/images1.jpg" alt="" width="100%" /></a> </div>
                   <p> Title: <span><%= game.title %></span><br />
                     Genre: <span><%= game.genre %></span><br />
-                    Total Purchase: <a href="#"> game.total_purchase <%= %></a> </p>
+                    Total Purchase: <a href="#">  <%= yetPurchase(game.total_purchase) %></a> </p>
                   <p class="price">Price: <strong><%= formatUang(game.price) %></strong> <form class="form-group" action="/steam/buy/<%=game.id%>" method="POST"><input type="submit" value="buy"></form> </p>
                 </li>
                 <%})%>
