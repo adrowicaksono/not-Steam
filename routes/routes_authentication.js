@@ -42,10 +42,13 @@ router.post('/',(req,res,next)=>{
 	    			next()
 	    			res.redirect('/')
     			}
-    		}
+			}else{
+				res.render('login', {errors:{message:'passsword salah'}})			
+			}
+			
     	}
     	else{
-    		res.render('login', {errors:{message:'username atau passsword salah'}})
+    		res.render('login', {errors:{message:'username salah'}})
     	}
     }).catch(err=>{
     	console.log(err)
@@ -73,11 +76,11 @@ router.post('/register',function(req,res){
 		password: req.body.password,
 	})
 	.then(()=>{
-		// console.log('------------->ctrl1' )
+		
 		res.redirect('/auth')
 	})
 	.catch(errors=> {
-		// console.log('sudah digunakan')
+	
 		if(errors){
 			res.render('register', {errors:{message:'email sudah digunakan'}})
 		}
