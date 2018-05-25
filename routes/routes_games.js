@@ -8,7 +8,17 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 
-router.get('/', function(req, res){
+router.get('/', function(req,res,next){
+    if(!req.session.current_user){
+        res.render('login',{errors: {message: 'Login untuk akses database'}})
+    }
+    else if(req.session.current_user.role !== 'admin'){
+        res.render('login', {errors:{message: 'bukan admin'}})
+    }
+    else{
+        next()
+    }
+},function(req, res){
     Games
     .findAll({order: [['id', 'ASC']]})
     .then(function(games){

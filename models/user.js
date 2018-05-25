@@ -8,14 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         isUnique: function(email,next) {
           User.findOne({where:{email:email}})
           .then((user)=>{
-            // console.log('------------->', user)
             if(user){
-
-            // console.log('------------->1' )
              next('username already Used')
             }
             else{
-              // console.log('------------->2' )
               next()
             }
           })
@@ -30,14 +26,11 @@ module.exports = (sequelize, DataTypes) => {
          isUnique: function(email,next) {
           User.findOne({where:{email:email}})
           .then((user)=>{
-            console.log('------------->', user)
             if(user){
-
-            // console.log('------------->1' )
-             next('Email already Used')
+              //throw new Error('email used');
+              next();
             }
             else{
-              // console.log('------------->2' )
               next()
             }
           })

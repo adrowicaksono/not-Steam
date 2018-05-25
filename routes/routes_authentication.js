@@ -45,8 +45,7 @@ router.post('/',(req,res,next)=>{
     		}
     	}
     	else{
-    		res.redirect('/')
-    		console.log('password salah')
+    		res.render('login', {errors:{message:'username atau passsword salah'}})
     	}
     }).catch(err=>{
     	console.log(err)
@@ -78,8 +77,10 @@ router.post('/register',function(req,res){
 		res.redirect('/auth')
 	})
 	.catch(errors=> {
-		console.log('------------->ctrl2', errors )
-		res.render('register', {errors})
+		// console.log('sudah digunakan')
+		if(errors){
+			res.render('register', {errors:{message:'email sudah digunakan'}})
+		}
 	})
 })
 

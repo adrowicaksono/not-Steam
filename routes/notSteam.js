@@ -23,13 +23,12 @@ router.get('/',(req,res)=>{
 
 router.get('/profile',function(req,res,next){
 	if (!req.session.current_user) {
-		res.redirect('/auth')
+		res.render('login', {errors:{message:"lihat profile, login dahulu"}})
 	}
 	else{
 		next()
 	}
 },(req,res)=>{
-	console.log(req.session.current_user.id,'jawdhjawhd')
 	if (req.session.current_user) {
 		Transaction.findAll({
 			include : {
@@ -67,7 +66,13 @@ router.post('/', function(req,res){
        
     })
 })
-router.get('/profile/:games_Id',(req,res)=>{
+router.get('/profile/:games_Id',function(req,res,next){
+	if(!req.session.current_user){
+		res.render('login', {errors:{message:'login dahulu'}})
+	}else{
+		next()
+	}
+},(req,res)=>{
 	Transaction.findAll({
 		include: {
 			model: User,
