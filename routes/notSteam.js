@@ -79,7 +79,11 @@ router.get('/profile/:games_Id',(req,res)=>{
 		res.render('view_who_played',{games})
 	})
 })
-router.post('/buy/:gamesId/', function(req, res){
+router.post('/buy/:gamesId/',function(req,res){
+	if(req.session.current_user){
+		res.redirect('/auth')
+	}
+}, function(req, res){
     let User_Id = req.session.current_user.id
     let games_Id = req.params.gamesId;
     // console.log(User_Id,'user id',games_Id,'games_Id')
