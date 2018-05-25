@@ -27,13 +27,13 @@
   
     <div id="slider">
       <div id="slider-holder">
-    <div class= 'container' >
-        <h1 style="margin: 40px;text-align: center">User Login</h1>
-        <% if(typeof msg !==undefined){ %>
-            <div class="alert alert-warning" role="alert" id='alert'>
+        <div class='container'>
+            
+            <h1 style="margin: 40px;text-align: center">SIGN IN</h1> 
+
                 
-            </div>
-        <% } %>
+                <%- include('../partial/showErr') %>        
+                
 
         <form action="/auth" method="POST" style="width: 300px;margin:auto">
             <div class="form-group">

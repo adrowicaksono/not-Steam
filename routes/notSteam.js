@@ -79,9 +79,12 @@ router.get('/profile/:games_Id',(req,res)=>{
 		res.render('view_who_played',{games})
 	})
 })
-router.post('/buy/:gamesId/',function(req,res){
-	if(req.session.current_user){
-		res.redirect('/auth')
+router.post('/buy/:gamesId/',function(req,res,next){
+	if(!req.session.current_user){
+		res.render('login', {errors:{message : "harus login dahulu" }})
+	}
+		else{
+			next()
 	}
 }, function(req, res){
     let User_Id = req.session.current_user.id

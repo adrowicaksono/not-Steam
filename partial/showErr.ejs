@@ -1,3 +1,5 @@
-<% if (typeof errors !== 'undefined') { %>
-        <p style="color: red"><%= errors.message %></p>
-<% } %>
+<div class="alert alert-warning" role="alert" id='alert'>
+        <% if (typeof errors !== 'undefined') { %>
+                <p style="color: red"><%= errors.message %></p>
+        <% } %>               
+</div>
